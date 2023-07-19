@@ -16,6 +16,7 @@ volunteerRouter.post("/add", async (req, res) => {
 
 volunteerRouter.get("/get", async (req, res) => {
   const { location, type } = req.query;
+
   try {
     if (location && type) {
       const data = await VolunteerModel.find({
@@ -36,8 +37,8 @@ volunteerRouter.get("/get", async (req, res) => {
       res.status(200).json({ data: data });
     }
   }
-  catch (error) {
-    res.status(400).json({ error: error.message });
+  catch (err) {
+    res.status(400).json({ error: err.message });
   }
 });
 
