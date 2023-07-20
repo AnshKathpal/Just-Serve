@@ -3,6 +3,8 @@ const { VolunteerModel } = require("../models/volunteerModel");
 
 const volunteerRouter = express.Router();
 
+
+// create
 volunteerRouter.post("/add", async (req, res) => {
   const data = req.body;
   try {
@@ -14,6 +16,7 @@ volunteerRouter.post("/add", async (req, res) => {
   }
 });
 
+// get
 volunteerRouter.get("/get", async (req, res) => {
   const { location, type } = req.query;
 
@@ -23,26 +26,52 @@ volunteerRouter.get("/get", async (req, res) => {
         $and: [{ location: location }, { typeofwork: type }],
       });
       res.status(200).json({ data: data });
-    }
-    else if (location) {
+    } else if (location) {
       const data = await VolunteerModel.find({ location: location });
       res.status(200).json({ data: data });
-    }
-    else if (type) {
+    } else if (type) {
       const data = await VolunteerModel.find({ typeofwork: type });
       res.status(200).json({ data: data });
-    }
-    else {
+    } else {
       const data = await VolunteerModel.find({});
       res.status(200).json({ data: data });
     }
-  }
-  catch (err) {
+  } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
 
+// update
+volunteerRouter.patch("/update/:id", async (req, res) => {
+  const { id } = req.params;
+  // console.log("BODY", req.body);
+  const posts = await VolunteerModel.findOne({ _id: id });
+  console.log("I'm POSTS", posts);
 
+  try {
+    await VolunteerModel.findByIdAndUpdate({ _id: id }, req.body);
+    res.status(200).json({ msg: "Post Updated Successfully ....!" });
+  }
+  catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
+// delete
+volunteerRouter.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log("BODY", req.body);
+  const posts = await VolunteerModel.findOne({ _id: id });
+  console.log("I'm POSTS", posts);
+  try {
+    await VolunteerModel.findByIdAndDelete({ _id: id }, req.body);
+    res.status(200).json({ msg: "Post Deleted Successfully ....!" });
+  }
+  catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
 module.exports = { volunteerRouter };
