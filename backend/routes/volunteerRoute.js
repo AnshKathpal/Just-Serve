@@ -3,6 +3,8 @@ const { VolunteerModel } = require("../models/volunteerModel");
 
 const volunteerRouter = express.Router();
 
+
+
 volunteerRouter.post("/add", async (req, res) => {
   const data = req.body;
   try {
@@ -107,4 +109,6 @@ volunteerRouter.get("/get", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+
+
 module.exports = { volunteerRouter };
