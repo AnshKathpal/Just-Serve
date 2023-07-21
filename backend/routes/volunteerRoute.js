@@ -14,8 +14,6 @@ volunteerRouter.post("/add", async (req, res) => {
   }
 });
 
-
-
 // update
 volunteerRouter.patch("/update/:id", async (req, res) => {
   const { id } = req.params;
@@ -26,12 +24,10 @@ volunteerRouter.patch("/update/:id", async (req, res) => {
   try {
     await VolunteerModel.findByIdAndUpdate({ _id: id }, req.body);
     res.status(200).json({ msg: "Post Updated Successfully ....!" });
-  }
-  catch (error) {
+  } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
-
 
 // delete
 volunteerRouter.delete("/delete/:id", async (req, res) => {
@@ -42,12 +38,10 @@ volunteerRouter.delete("/delete/:id", async (req, res) => {
   try {
     await VolunteerModel.findByIdAndDelete({ _id: id }, req.body);
     res.status(200).json({ msg: "Post Deleted Successfully ....!" });
-  }
-  catch (error) {
+  } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
-
 
 // get
 volunteerRouter.get("/get", async (req, res) => {
@@ -66,28 +60,14 @@ volunteerRouter.get("/get", async (req, res) => {
       const data = await VolunteerModel.find({ typeofwork: type });
       res.status(200).json({ data: data });
     } else if (page) {
-      page = parseInt(page) || 1; // Default to page 1 if page parameter is not provided
-      limit = parseInt(limit) || 10; // Default to 10 items per page if limit parameter is not provided
+      const page = parseInt(req.query.page) || 1; // Default to page 1 if page parameter is not provided
+      const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page if limit parameter is not provided
+
       try {
-        let query = {};
-        const searchTerm = search;
-        // If search term is provided, add it to the query
-        if (searchTerm) {
-          query = {
-            $or: [
-              { role: { $regex: searchTerm, $options: "i" } }, // Case-insensitive search on title
-              { name: { $regex: searchTerm, $options: "i" } }, // Case-insensitive search on author
-              { location: { $regex: searchTerm, $options: "i" } }, // Case-insensitive search on genre
-            ],
-          };
-        }
-        const totalVolunteers = await VolunteerModel.countDocuments(query);
+        const totalBooks = await VolunteerModel.countDocuments();
         const totalPages = Math.ceil(totalBooks / limit);
 
-        const volunteers = await VolunteerModel.find(query);
-
-        res
-          .json(volunteers)
+        const books = await VolunteerModel.find()
           .skip((page - 1) * limit)
           .limit(limit);
 
@@ -96,6 +76,26 @@ volunteerRouter.get("/get", async (req, res) => {
           totalPages,
           data: books,
         });
+      } catch (err) {
+        res.status(500).json({ error: "Failed to fetch books" });
+      }
+    } else if (search) {
+      try {
+        let query = {};
+        const searchTerm = search;
+        // If search term is provided, add it to the query
+        if (searchTerm) {
+          query = {
+            $or: [
+              { name: { $regex: searchTerm, $options: "i" } }, // Case-insensitive search on title
+              { role: { $regex: searchTerm, $options: "i" } }, // Case-insensitive search on author
+              { location: { $regex: searchTerm, $options: "i" } }, // Case-insensitive search on genre
+            ],
+          };
+        }
+
+        const books = await VolunteerModel.find(query);
+        res.json(books);
       } catch (err) {
         res.status(500).json({ error: "Failed to fetch books" });
       }
