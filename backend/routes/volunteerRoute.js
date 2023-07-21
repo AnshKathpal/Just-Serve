@@ -14,7 +14,42 @@ volunteerRouter.post("/add", async (req, res) => {
   }
 });
 
-// get//gett//hhh
+
+
+// update
+volunteerRouter.patch("/update/:id", async (req, res) => {
+  const { id } = req.params;
+  // console.log("BODY", req.body);
+  const posts = await VolunteerModel.findOne({ _id: id });
+  console.log("I'm POSTS", posts);
+
+  try {
+    await VolunteerModel.findByIdAndUpdate({ _id: id }, req.body);
+    res.status(200).json({ msg: "Post Updated Successfully ....!" });
+  }
+  catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
+// delete
+volunteerRouter.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log("BODY", req.body);
+  const posts = await VolunteerModel.findOne({ _id: id });
+  console.log("I'm POSTS", posts);
+  try {
+    await VolunteerModel.findByIdAndDelete({ _id: id }, req.body);
+    res.status(200).json({ msg: "Post Deleted Successfully ....!" });
+  }
+  catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
+// get
 volunteerRouter.get("/get", async (req, res) => {
   let { location, type, page, limit, search } = req.query;
 
@@ -72,5 +107,4 @@ volunteerRouter.get("/get", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
-
 module.exports = { volunteerRouter };
