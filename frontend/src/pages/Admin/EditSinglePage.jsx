@@ -1,47 +1,22 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import { Text, Box } from "@chakra-ui/react";
-import { AdminSidebar } from "../../Components/AdminComponents/AdminSidebar";
-import { useDispatch } from "react-redux";
-import { postVolunteers } from "../../Redux/AdminReducer/action";
+import { useSelector } from 'react-redux';
 
-export const AddList = () => {
-  let initialState = {
-    name: "",
-    description: "",
-    role: "",
-    location: "",
-    typeofwork: "",
-    updated: "",
-    start_date: "",
-    end_date: "",
-    image: "",
-    schedule: "",
-    address: "",
-  };
+export const EditSinglePage = () => {
 
-  const dispatch = useDispatch();
+    const editVolunteer = useSelector((store) => store.adminReducer.volunteers)
 
-  const [volunteers, setVolunteers] = useState(initialState);
+    const [editData,setEditData]  = useState({});
 
-  const handleChange = (e) => {
-    setVolunteers({...volunteers, [e.target.name] : e.target.value})
-  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(postVolunteers(volunteers));
-    
-    setVolunteers(initialState)
-    alert("Data added")
-    console.log(volunteers);
-  };
 
   return (
     <>
-      <Text fontSize="4xl">Add Volunteer Opprtinuties</Text>
+    
+    <Text fontSize="4xl">Edit Volunteer Opprtinuties</Text>
 
       <form
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
         style={{
           border: "1px solid red",
           display: "grid",
@@ -57,10 +32,10 @@ export const AddList = () => {
           <label>Name of Organisation</label>
           <br />
           <input
-            name="name"
-            value={volunteers.name}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="name"
+            // value={volunteers.name}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -74,10 +49,10 @@ export const AddList = () => {
           <label>Description</label>
           <br />
           <input
-            name="description"
-            value={volunteers.description}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="description"
+            // value={volunteers.description}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -92,10 +67,10 @@ export const AddList = () => {
           <label>Role</label>
           <br />
           <input
-            name="role"
-            value={volunteers.role}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="role"
+            // value={volunteers.role}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -110,10 +85,10 @@ export const AddList = () => {
           <label>Work Type</label>
           <br />
           <input
-            name="typeofwork"
-            value={volunteers.typeofwork}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="typeofwork"
+            // value={volunteers.typeofwork}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -128,10 +103,10 @@ export const AddList = () => {
           <label>Location</label>
           <br />
           <select
-            name="location"
-            value={volunteers.location}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="location"
+            // value={volunteers.location}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -153,10 +128,10 @@ export const AddList = () => {
           <label>Image</label>
           <br />
           <input
-            name="image"
-            value={volunteers.image}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="image"
+            // value={volunteers.image}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -172,10 +147,10 @@ export const AddList = () => {
           <label>Posted on</label>
           <br />
           <input
-            name="updated"
-            value={volunteers.updated}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="updated"
+            // value={volunteers.updated}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -190,10 +165,10 @@ export const AddList = () => {
           <label>Start Date</label>
           <br />
           <input
-            name="start_date"
-            value={volunteers.start_date}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="start_date"
+            // value={volunteers.start_date}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -208,10 +183,10 @@ export const AddList = () => {
           <label>End Data</label>
           <br />
           <input
-            name="end_date"
-            value={volunteers.end_date}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="end_date"
+            // value={volunteers.end_date}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -225,10 +200,10 @@ export const AddList = () => {
           <label>Schedule</label>
           <br />
           <input
-            name="schedule"
-            value={volunteers.schedule}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="schedule"
+            // value={volunteers.schedule}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -243,10 +218,10 @@ export const AddList = () => {
           <label>Address</label>
           <br />
           <textarea
-            name="address"
-            value={volunteers.address}
-            // onChange={(e) => setVolunteers(e.target.value)}
-            onChange = {handleChange}
+            // name="address"
+            // value={volunteers.address}
+            // // onChange={(e) => setVolunteers(e.target.value)}
+            // onChange = {handleChange}
             style={{
               border: "1px solid black",
               width: "300px",
@@ -259,7 +234,8 @@ export const AddList = () => {
 
         <input type="submit" />
       </form>
-      {/* </Box> */}
+
+
     </>
-  );
-};
+  )
+}
