@@ -37,33 +37,83 @@ import {
   FiUserPlus,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
-import { ReactText } from "react";
+import { ReactText, useState } from "react";
 import Logo from "../../Images/JustServe.png";
 import { NavLink } from "react-router-dom";
 import React from "react";
 import { AddList } from "../../pages/Admin/AddList";
 import { createElement } from "react";
+import { OurVolunteer } from "../../pages/Admin/OurVolunteer";
+import { VolunteerList } from "../../pages/Admin/VolunteerList";
+import { AdminList } from "../../pages/Admin/AdminList";
+import { AdminNew } from "../../pages/Admin/AdminNew";
 
-const dashboardRoutes = [
-  { name: "Home", icon: FiHome, link: "/admindashboard" },
-  { name: "Our Volunteers", icon: FiTrendingUp, link: "/ourvolunteers" },
-];
+// const dashboardRoutes = [
+//   { name: "Home", icon: FiHome, link: "/admindashboard" },
+//   { name: "Our Volunteers", icon: FiTrendingUp, link: "/ourvolunteers" },
+// ];
 
-const menuRoutes = [
-  { name: "VolunteerList", icon: FiList, link: "/volunteerlist" },
-  {
-    name: "Add Volunteer Opportunities",
-    icon: FiEdit2,
-    link: "/addvolunteers",
-  },
-];
+// const menuRoutes = [
+//   { name: "VolunteerList", icon: FiList, link: "/volunteerlist" },
+//   {
+//     name: "Add Volunteer Opportunities",
+//     icon: FiEdit2,
+//     link: "/addvolunteers",
+//   },
+// ];
 
-const adminRoutes = [
-  { name: "Admins", icon: FiUsers, link: "/adminlist" },
-  { name: "RegisterAdmin", icon: FiUserPlus, link: "/registeradmin" },
-];
+// const adminRoutes = [
+//   { name: "Admins", icon: FiUsers, link: "/adminlist" },
+//   { name: "RegisterAdmin", icon: FiUserPlus, link: "/registeradmin" },
+// ];
 
 export const AdminSidebar = () => {
+  const [showAddList, setShowAddList] = useState(true);
+  const [showOurVolunteer, setShowOurVolunteer] = useState(true);
+  const [showVolunteerList, setShowVolunteerList] = useState(true);
+  const [showAdminList, setShowAdminList] = useState(true);
+  const [showNewAdmin, setShowNewAdmin] = useState(true);
+
+  const handleToggleAddList = () => {
+    setShowAddList(true);
+    setShowOurVolunteer(false);
+    setShowAdminList(false)
+    setShowNewAdmin(false)
+    setShowVolunteerList(false);
+  };
+
+  const handleToggleOurVolunteer = () => {
+    setShowAddList(false);
+    setShowVolunteerList(false);
+    setShowAdminList(false)
+    setShowNewAdmin(false)
+    setShowOurVolunteer(true);
+  };
+
+  const handleToggleVolunteerList = () => {
+    setShowAddList(false);
+    setShowOurVolunteer(false);
+    setShowAdminList(false)
+    setShowNewAdmin(false)
+    setShowVolunteerList(true);
+  };
+
+  const handleToggleAdminList = () => {
+    setShowAddList(false);
+    setShowOurVolunteer(false);
+    setShowVolunteerList(false);
+    setShowNewAdmin(false)
+    setShowAdminList(true)
+  };
+
+  const handleToggleNewAdmin = () => {
+    setShowAddList(false);
+    setShowOurVolunteer(false);
+    setShowVolunteerList(false);
+    setShowAdminList(false)
+    setShowNewAdmin(true)
+  };
+
   return (
     <div>
       <Flex>
@@ -78,17 +128,18 @@ export const AdminSidebar = () => {
             </Text>
 
             <VStack width="90%">
-              {dashboardRoutes.map((el) => (
-                <NavLink to={el.link}>
-                  <Button
-                    bg="white"
-                    width="100%"
-                    leftIcon={createElement(el.icon)}
-                  >
-                    {el.name}
-                  </Button>
-                </NavLink>
-              ))}
+              <Button bg="white" width="100%" leftIcon={<FiHome />}>
+                Home
+              </Button>
+
+              <Button
+                bg="white"
+                width="100%"
+                onClick={handleToggleOurVolunteer}
+                leftIcon={<FiTrendingUp />}
+              >
+                Our Volunteer
+              </Button>
             </VStack>
 
             <Text color="gray.500" width="90%">
@@ -96,17 +147,18 @@ export const AdminSidebar = () => {
               <hr />
             </Text>
             <VStack width="90%">
-              {menuRoutes.map((el) => (
-                <NavLink to={el.link}>
-                  <Button
-                    bg="white"
-                    width="100%"
-                    leftIcon={createElement(el.icon)}
-                  >
-                    {el.name}
-                  </Button>
-                </NavLink>
-              ))}
+              <Button onClick={handleToggleVolunteerList} bg="white" width="100%" leftIcon={<FiList />}>
+                Volunteer List
+              </Button>
+
+              <Button
+                onClick={handleToggleAddList}
+                bg="white"
+                width="100%"
+                leftIcon={<FiEdit2 />}
+              >
+                Add Volunteer Opportunities
+              </Button>
             </VStack>
 
             <Text color="gray.500" width="90%">
@@ -114,17 +166,13 @@ export const AdminSidebar = () => {
               <hr />
             </Text>
             <VStack width="90%">
-              {adminRoutes.map((el) => (
-                <NavLink to={el.link}>
-                  <Button
-                    bg="white"
-                    width="100%"
-                    leftIcon={createElement(el.icon)}
-                  >
-                    {el.name}
-                  </Button>
-                </NavLink>
-              ))}
+              <Button onClick = {handleToggleAdminList} bg="white" width="100%" leftIcon={<FiUsers />}>
+                Admins
+              </Button>
+
+              <Button onClick={handleToggleNewAdmin} bg="white" width="100%" leftIcon={<FiUserPlus />}>
+                Register Admins
+              </Button>
             </VStack>
           </VStack>
         </Box>
@@ -136,10 +184,12 @@ export const AdminSidebar = () => {
           top="10%"
           right="2.5%"
         >
-
-        <AddList/>
-
-
+          
+          {showAddList && <AddList />}
+          {showOurVolunteer && <OurVolunteer />}
+          {showVolunteerList && <VolunteerList />}
+          {showAdminList && <AdminList />}
+          {showNewAdmin && <AdminNew />}
         </Box>
 
         <Flex
