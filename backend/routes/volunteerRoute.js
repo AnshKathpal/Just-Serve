@@ -64,20 +64,20 @@ volunteerRouter.get("/get", async (req, res) => {
       const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page if limit parameter is not provided
 
       try {
-        const totalBooks = await VolunteerModel.countDocuments();
-        const totalPages = Math.ceil(totalBooks / limit);
+        const totalVolunteers = await VolunteerModel.countDocuments();
+        const totalPages = Math.ceil(totalVolunteers / limit);
 
-        const books = await VolunteerModel.find()
+        const volunteers = await VolunteerModel.find()
           .skip((page - 1) * limit)
           .limit(limit);
 
         res.json({
           currentPage: page,
           totalPages,
-          data: books,
+          data: volunteers,
         });
       } catch (err) {
-        res.status(500).json({ error: "Failed to fetch books" });
+        res.status(500).json({ error: "Failed to fetch data" });
       }
     } else if (search) {
       try {
@@ -94,8 +94,8 @@ volunteerRouter.get("/get", async (req, res) => {
           };
         }
 
-        const books = await VolunteerModel.find(query);
-        res.json(books);
+        const volunteers = await VolunteerModel.find(query);
+        res.json(volunteers);
       } catch (err) {
         res.status(500).json({ error: "Failed to fetch books" });
       }
