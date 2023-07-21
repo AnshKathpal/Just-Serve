@@ -11,7 +11,7 @@ require("dotenv").config();
 
 // register
 userRouter.post("/register", async (req, res) => {
-  const { name, email, gender, password, age, city, is_married } = req.body;
+  const { name, email, gender, password, city } = req.body;
   try {
     const user1 = await UserModel.findOne({ email });
     if (user1) {
