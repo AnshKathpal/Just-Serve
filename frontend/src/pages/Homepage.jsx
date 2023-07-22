@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import homevideo from "../Images/homevideo.mp4";
+import footerimg from "../Images/footerimg.jpeg";
 import {
   Box,
   Button,
@@ -36,176 +38,61 @@ const Homepage = () => {
   return (
     <div>
       <Navbar />
-      <Box border="1px solid red" height="120vh" width="100%">
+      <Box border="1px solid red" height="80vh" width="100%">
         {/* Image */}
 
-        <Box boxSize="9lg" h={"120vh"}>
-          <Image
+        <Box border={"2px solid blue"} boxSize="9lg">
+          {/* <Image
             src="https://process.filestackapi.com/resize=w:1920,h:1024/quality=value:70/output=format:webp/cache=expiry:31536000/compress/no_metadata/iNAPLSqgSwnkpID73Mpr"
             alt="#"
             w={"100%"}
             h={"135vh"}
-          />
+          /> */}
+
+          <video src={homevideo} autoplay loop></video>
 
           <Box
-            w={"30%"}
-            position={"relative"}
-            bottom={"800px"}
-            left={"200px"}
+            //w={"30%"}
+            w="40%"
+            h="300px"
+            position={"absolute"}
+            top={60}
+            left={40}
             bg={"white"}
             padding={"100px"}
             borderRadius={"5%"}
+            border={"1px solid red"}
           >
-            <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
-              Change requires action. Start here.
-            </Heading>
-            <FormControl as={GridItem} colSpan={[6, 3]}>
-              <FormLabel
-                htmlFor="Search"
-                fontSize="sm"
-                fontWeight="md"
-                color="gray.700"
-                _dark={{
-                  color: "gray.50",
-                }}
-              >
-                Search
-              </FormLabel>
-              <Select
-                id="country"
-                name="country"
-                autoComplete="country"
-                placeholder="Select option"
-                focusBorderColor="brand.400"
-                shadow="sm"
-                size="sm"
-                w="full"
-                rounded="md"
-              >
-                <option>Job</option>
-                <option>Everything</option>
-                <option>Internships</option>
-                <option>Volunteer Opportunies</option>
-              </Select>
-            </FormControl>
-
-            <FormControl as={GridItem} colSpan={6}>
-              <FormLabel
-                htmlFor="street_address"
-                fontSize="sm"
-                fontWeight="md"
-                color="gray.700"
-                _dark={{
-                  color: "gray.50",
-                }}
-                mt="2%"
-              >
-                Street address
-              </FormLabel>
-              <Input
+            <Text fontSize="2xl">Change requires action. Start here.</Text>
+            <form>
+              <select>
+                <option value="">Everything</option>
+                <option value="jobs">Jobs</option>
+                <option value="internships">Internships</option>
+                <option value="volunteeropportunities">
+                  Volunteer Opportunities
+                </option>
+                <option value="organisation">Organisations</option>
+              </select>
+              <input
                 type="text"
-                name="street_address"
-                id="street_address"
-                autoComplete="street-address"
-                focusBorderColor="brand.400"
-                shadow="sm"
-                size="sm"
-                w="full"
-                rounded="md"
+                placeholder="Search by keywords, skills or interests"
               />
-            </FormControl>
 
-            <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
-              <FormLabel
-                htmlFor="city"
-                fontSize="sm"
-                fontWeight="md"
-                color="gray.700"
-                _dark={{
-                  color: "gray.50",
-                }}
-                mt="2%"
-              >
-                City
-              </FormLabel>
-              <Input
-                type="text"
-                name="city"
-                id="city"
-                autoComplete="city"
-                focusBorderColor="brand.400"
-                shadow="sm"
-                size="sm"
-                w="full"
-                rounded="md"
-              />
-            </FormControl>
-
-            <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-              <FormLabel
-                htmlFor="state"
-                fontSize="sm"
-                fontWeight="md"
-                color="gray.700"
-                _dark={{
-                  color: "gray.50",
-                }}
-                mt="2%"
-              >
-                State / Province
-              </FormLabel>
-              <Input
-                type="text"
-                name="state"
-                id="state"
-                autoComplete="state"
-                focusBorderColor="brand.400"
-                shadow="sm"
-                size="sm"
-                w="full"
-                rounded="md"
-              />
-            </FormControl>
-
-            <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-              <FormLabel
-                htmlFor="postal_code"
-                fontSize="sm"
-                fontWeight="md"
-                color="gray.700"
-                _dark={{
-                  color: "gray.50",
-                }}
-                mt="2%"
-              >
-                ZIP / Postal
-              </FormLabel>
-              <Input
-                type="text"
-                name="postal_code"
-                id="postal_code"
-                autoComplete="postal-code"
-                focusBorderColor="brand.400"
-                shadow="sm"
-                size="sm"
-                w="full"
-                rounded="md"
-              />
-            </FormControl>
-            <FormControl
-              as={GridItem}
-              colSpan={[6, 3, null, 2]}
-              margin={"30px 30px 0px 0px"}
-            >
-              <Button colorScheme="blue">Button</Button>
-            </FormControl>
+              <div style={{ display: "flex" }}>
+                <button>Search</button>
+                <button>SignUp</button>
+                <button>Login</button>
+              </div>
+            </form>
           </Box>
         </Box>
       </Box>
+
       {/* 2nd */}
-      <Box border={"1px solid black"} height={"60vh"} width={"100%"}>
+      <Box  height={"60vh"} width={"100%"}>
         <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} gap={10}>
-          <Box border={"1px solid blue"} >
+          <Box>
             <Center py={12}>
               <Box
                 role={"group"}
@@ -218,66 +105,47 @@ const Homepage = () => {
                 pos={"relative"}
                 zIndex={1}
               >
-                <Box
+                <Flex
                   rounded={"lg"}
-                  mt={-12}
+                  
                   pos={"relative"}
                   height={"230px"}
-                  _after={{
-                    transition: "all .3s ease",
-                    content: '""',
-                    w: "full",
-                    h: "full",
-                    pos: "absolute",
-                    top: 5,
-                    left: 0,
-                    backgroundImage: `url(${""})`,
-                    filter: "blur(15px)",
-                    zIndex: -1,
-                  }}
-                  _groupHover={{
-                    _after: {
-                      filter: "blur(20px)",
-                    },
-                  }}
+                  justify="center"
+                  alignItems={"center"}
                 >
                   <Image
                     rounded={"lg"}
-                    height={230}
-                    width={282}
-                    objectFit={"cover"}
-                    src={""}
+                    width={"70%"}
+                    height={"150px"}
+                    src={
+                      "https://process.filestackapi.com/output=secure:true/cache=expiry:31536000/compress/no_metadata/rEYQ6k5sRDSXQZVVYB3R"
+                    }
                   />
-                </Box>
+                </Flex>
                 <Stack pt={10} align={"center"}>
                   <Text
-                    color={"gray.500"}
-                    fontSize={"sm"}
-                    textTransform={"uppercase"}
-                  >
-                    Brand
-                  </Text>
-                  <Heading
+                    color={"black"}
                     fontSize={"2xl"}
-                    fontFamily={"body"}
-                    fontWeight={500}
+                    textTransform={"uppercase"}
+                    _hover={{
+                      color: "rgb(15,115,217)",
+                    }}
+                    fontWeight={"bold"}
                   >
-                    Nice Chair, pink
-                  </Heading>
+                    Social-Impact Jobs
+                  </Text>
                   <Stack direction={"row"} align={"center"}>
-                    <Text fontWeight={800} fontSize={"xl"}>
-                      $57
-                    </Text>
-                    <Text textDecoration={"line-through"} color={"gray.600"}>
-                      $199
+                    <Text>
+                      Use our location, experience level, and issue area
+                      job-search filters to explore more than 5,000 jobs in the
+                      social-impact world.
                     </Text>
                   </Stack>
                 </Stack>
               </Box>
             </Center>
           </Box>
-          <Box border={"1px solid blue"} >
-            {" "}
+          <Box>
             <Center py={12}>
               <Box
                 role={"group"}
@@ -290,66 +158,47 @@ const Homepage = () => {
                 pos={"relative"}
                 zIndex={1}
               >
-                <Box
+                <Flex
                   rounded={"lg"}
-                  mt={-12}
                   pos={"relative"}
                   height={"230px"}
-                  _after={{
-                    transition: "all .3s ease",
-                    content: '""',
-                    w: "full",
-                    h: "full",
-                    pos: "absolute",
-                    top: 5,
-                    left: 0,
-                    backgroundImage: `url(${""})`,
-                    filter: "blur(15px)",
-                    zIndex: -1,
-                  }}
-                  _groupHover={{
-                    _after: {
-                      filter: "blur(20px)",
-                    },
-                  }}
+                  justify="center"
+                  alignItems={"center"}
                 >
                   <Image
                     rounded={"lg"}
-                    height={230}
-                    width={282}
-                    objectFit={"cover"}
-                    src={""}
+                    width={"60%"}
+                    height={"150px"}
+                    src={
+                      "https://process.filestackapi.com/output=secure:true/cache=expiry:31536000/compress/no_metadata/Qs4yYmfiSWyPeNdoWqHL"
+                    }
                   />
-                </Box>
+                </Flex>
                 <Stack pt={10} align={"center"}>
                   <Text
-                    color={"gray.500"}
-                    fontSize={"sm"}
-                    textTransform={"uppercase"}
-                  >
-                    Brand
-                  </Text>
-                  <Heading
+                    color={"black"}
                     fontSize={"2xl"}
-                    fontFamily={"body"}
-                    fontWeight={500}
+                    textTransform={"uppercase"}
+                    _hover={{
+                      color: "rgb(15,115,217)",
+                    }}
+                    fontWeight={"bold"}
                   >
-                    Nice Chair, pink
-                  </Heading>
+                    Add Organization
+                  </Text>
                   <Stack direction={"row"} align={"center"}>
-                    <Text fontWeight={800} fontSize={"xl"}>
-                      $57
-                    </Text>
-                    <Text textDecoration={"line-through"} color={"gray.600"}>
-                      $199
+                    <Text>
+                      Join over 150,000 organizations using Idealist to post
+                      their jobs, internships, events, and volunteer
+                      opportunities.
                     </Text>
                   </Stack>
                 </Stack>
               </Box>
             </Center>
           </Box>
-          <Box border={"1px solid blue"}>
-          <Center py={12}>
+          <Box >
+            <Center py={12}>
               <Box
                 role={"group"}
                 p={6}
@@ -361,58 +210,39 @@ const Homepage = () => {
                 pos={"relative"}
                 zIndex={1}
               >
-                <Box
+                <Flex
                   rounded={"lg"}
-                  mt={-12}
+              
                   pos={"relative"}
                   height={"230px"}
-                  _after={{
-                    transition: "all .3s ease",
-                    content: '""',
-                    w: "full",
-                    h: "full",
-                    pos: "absolute",
-                    top: 5,
-                    left: 0,
-                    backgroundImage: `url(${"https://process.filestackapi.com/output=secure:true/cache=expiry:31536000/compress/no_metadata/Qs4yYmfiSWyPeNdoWqHL"})`,
-                    filter: "blur(15px)",
-                    zIndex: -1,
-                  }}
-                  _groupHover={{
-                    _after: {
-                      filter: "blur(20px)",
-                    },
-                  }}
+                  justify="center"
+                  alignItems={"center"}
                 >
                   <Image
                     rounded={"lg"}
-                    height={230}
-                    width={282}
-                    objectFit={"cover"}
-                    src={""}
+                    width={"70%"}
+                    height={"150px"}
+                    src={
+                      "https://process.filestackapi.com/output=secure:true/cache=expiry:31536000/compress/no_metadata/OgXYtU8eSYKi7aj1XwqM"
+                    }
                   />
-                </Box>
+                </Flex>
                 <Stack pt={10} align={"center"}>
                   <Text
-                    color={"gray.500"}
-                    fontSize={"sm"}
-                    textTransform={"uppercase"}
-                  >
-                    Brand
-                  </Text>
-                  <Heading
+                    color={"black"}
                     fontSize={"2xl"}
-                    fontFamily={"body"}
-                    fontWeight={500}
+                    textTransform={"uppercase"}
+                    _hover={{
+                      color: "rgb(15,115,217)",
+                    }}
+                    fontWeight={"bold"}
                   >
-                    Nice Chair, pink
-                  </Heading>
+                    Volunteering and Events
+                  </Text>
                   <Stack direction={"row"} align={"center"}>
-                    <Text fontWeight={800} fontSize={"xl"}>
-                      $57
-                    </Text>
-                    <Text textDecoration={"line-through"} color={"gray.600"}>
-                      $199
+                    <Text>
+                      Explore our volunteer, event, and action listings to
+                      discover ways to make an impact in your community.
                     </Text>
                   </Stack>
                 </Stack>
@@ -421,16 +251,16 @@ const Homepage = () => {
           </Box>
         </SimpleGrid>
       </Box>
-      
+
       <Divider marginTop={"10px"} />
       <Spacer />
-      <Box fontSize={"4xl"} fontWeight={"bold"} marginTop={20}>
+      <Box border = "1px solid black" fontSize={"4xl"} fontWeight={"bold"} marginTop={20}>
         <Center>
           <h1>The latest from our career experts</h1>
         </Center>
       </Box>
-      <SimpleGrid columns={{ lg: 4, sm: 1 }} gap={10} h={"30vh"}>
-        <Box>
+      <SimpleGrid border= "1px solid red" columns={{ lg: 4, sm: 1 }} gap={10} >
+        <Box border = "1px solid black">
           <Image
             margin={"auto"}
             borderRadius="full"
@@ -443,7 +273,7 @@ const Homepage = () => {
           </Heading>
         </Box>
 
-        <Box>
+        <Box border = "1px solid black">
           <Image
             margin={"auto"}
             borderRadius="full"
@@ -455,7 +285,7 @@ const Homepage = () => {
             Who's Hiring? 10 Organizations Hiring for Director-Level Roles
           </Heading>
         </Box>
-        <Box>
+        <Box border = "1px solid black">
           <Image
             margin={"auto"}
             borderRadius="full"
@@ -467,7 +297,7 @@ const Homepage = () => {
             Who's Hiring? 10 Organizations Hiring for Director-Level Roles
           </Heading>
         </Box>
-        <Box>
+        <Box border = "1px solid black">
           <Image
             margin={"auto"}
             borderRadius="full"
@@ -496,9 +326,13 @@ const Homepage = () => {
       <Box border={"1px solid red"} h={"80vh"}></Box>
       <ImageSlider />
       <Box border={"1px solid red"} h={"80vh"}></Box>
-      <Box border="1px solid red" height="80vh" width="100%">
-        {/* Image */}
-      </Box>
+      <Box
+        border="1px solid red"
+        height="80vh"
+        width="100%"
+        objectFit={"fill"}
+        backgroundImage={`url(${footerimg})`}
+      ></Box>
       <Footer />
     </div>
   );

@@ -131,6 +131,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
+import logo from '../Images/JustServe.png'
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -160,15 +161,15 @@ export default function WithSubnavigation() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+        <Flex flex={{ base: 1 }}  justify={{ base: 'center', md: 'start' }} border={'1px solid red'} alignItems={'center'} >
           <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}>
-            Logo
+            <img src={logo} alt="" style={{width:"40%",}} />
           </Text>
 
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+          <Flex display={{ base: 'none', md: 'flex' }} ml={-20} border={'1px solid blue'}>
             <DesktopNav />
           </Flex>
         </Flex>
@@ -362,7 +363,7 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: 'Inspiration',
+    label: 'Jobs',
     children: [
       // {
       //   label: 'Explore Design Work',
@@ -377,7 +378,7 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: 'Find Work',
+    label: 'Internships',
     children: [
       // {
       //   label: 'Job Board',
@@ -392,11 +393,11 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: 'Learn Design',
+    label: 'Volunteer Opportunities',
     href: '#',
   },
   {
-    label: 'Hire Designers',
+    label: 'Organizations',
     href: '#',
   },
 ];

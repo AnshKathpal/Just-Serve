@@ -11,7 +11,7 @@ function App() {
     <div className="App">
 
       <MainRoutes />
-      <h1>Check</h1>
+      {/* <h1>Check</h1> */}
       <Homepage/>
     </div>
   );
