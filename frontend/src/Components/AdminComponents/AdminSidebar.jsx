@@ -115,13 +115,13 @@ export const AdminSidebar = () => {
   };
 
   return (
-    <div>
-      <Flex>
-        <Box border="1px solid red" width="25%" height="100vh">
-          <Box width="45%" margin="auto">
+    <div >
+      <Flex bg="#eff2f5">
+        <Box bg="white"   border="1px solid red" width="25%" height="100vh">
+          <Box  width="45%" margin="auto">
             <img src={Logo} alt="" />
           </Box>
-          <VStack p="10">
+          <VStack  p="10">
             <Text color="gray.500" width="90%">
               Dashboard
               <hr />
@@ -192,7 +192,8 @@ export const AdminSidebar = () => {
           {showNewAdmin && <AdminNew />}
         </Box>
 
-        <Flex
+        <Flex 
+        bg="white"
           border="1px solid red"
           height="80px"
           pr="40px"

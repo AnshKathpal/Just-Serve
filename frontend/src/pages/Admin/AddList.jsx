@@ -48,7 +48,6 @@ export const AddList = () => {
           gridTemplateColumns: "repeat(3,1fr)",
           textAlign: "left",
           placeItems: "center",
-          width: "70%",
           height: "700px",
           margin: "40px auto",
         }}
