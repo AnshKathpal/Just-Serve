@@ -4,6 +4,7 @@ import {
     POST_VOLUNTEER_SUCCESS,
     VOLUNTEER_ERROR,
     VOLUNTEER_REQUEST,
+    DELETE_VOLUNTEER_SUCCESS
   } from "./actionTypes";
 
 
@@ -50,6 +51,17 @@ import {
           ...state,
           isLoading : false,
         }
+      }
+      case DELETE_VOLUNTEER_SUCCESS: {
+        const updatedVolunteers = state.volunteers.filter(
+          (volunteer) => volunteer.id !== payload
+        );
+        return {
+          ...state,
+          isLoading: false,
+          isError: false,
+          volunteers: updatedVolunteers,
+        };
       }
       default: {
         return state;
