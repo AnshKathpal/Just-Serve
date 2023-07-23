@@ -6,26 +6,44 @@ import axios from "axios";
 import { getVolunteer } from "../Redux/VolunteerReducer/action";
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import Pagination from "../Components/Pagination";
 
 const Volunteers = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState([]);
+
+  const initPage = searchParams.get("page");
+  // const [page, setPage] = useState(initpage || 1);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const volunteers = useSelector(
     (store) => store.volunteerReducer.volunteers.data
   );
+  const totalVolunteers = useSelector(
+    (store) => store.volunteerReducer.volunteers.totalPages
+  );
   const dispatch = useDispatch();
-//   console.log(volunteers);
+  //   console.log(volunteers);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    setSearchParams({ page: newPage.toString() });
+  };
 
   let obj = {
     params: {
       location: searchParams.getAll("location"),
       type: searchParams.getAll("type"),
+      page: currentPage,
+      limit: 5,
     },
   };
 
   useEffect(() => {
+    const initPage = searchParams.get("page");
+    setCurrentPage(initPage ? parseInt(initPage) : 1);
     dispatch(getVolunteer(obj));
-  }, [searchParams]);
+  }, [searchParams, currentPage, dispatch]);
 
   //   console.log(data);
 
@@ -35,22 +53,29 @@ const Volunteers = () => {
         {/* Sidebar */}
         <SidebarBox />
 
-        {/* Main content */}
         <Flex
           gap={"20px"}
-        //   border={"1px solid red"}
+          //   border={"1px solid red"}
           p={4}
           w={"100%"}
           flexWrap="wrap"
           flexDirection={"row"}
         >
-          {/* <SimpleGrid columns={{ sm: 1, md: 1, lg: 1 }}> */}
+          {/* ProductBox */}
           {volunteers?.map((product, index) => (
             <ProductBox key={index} {...product} />
           ))}
-          {/* </SimpleGrid> */}
         </Flex>
       </Flex>
+
+      {/* Pagination */}
+      <Box>
+        <Pagination
+          totalPages={totalVolunteers}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      </Box>
     </Box>
   );
 };
