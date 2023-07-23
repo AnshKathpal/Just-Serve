@@ -13,7 +13,7 @@ function Login() {
   
     return (
       <>
-        <Button onClick={onOpen}>Login</Button>
+        <Button bg="white" onClick={onOpen}>Login</Button>
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}

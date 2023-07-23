@@ -16,6 +16,7 @@ import {
   useDisclosure,
   HStack,
 } from "@chakra-ui/react";
+import {NavLink} from "react-router-dom" 
 import {
   HamburgerIcon,
   CloseIcon,
@@ -131,9 +132,9 @@ export default function WithSubnavigation() {
           </button>
 
           <HStack>
-            <Button bg="white" color="grey" height="40px" fontSize="20px">
+            
               <Login/>
-            </Button>
+            
             <Text>|</Text>
             <Button bg="white" color="grey" leftIcon={<FiGlobe />}>
               En
@@ -160,10 +161,10 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           {/* <Popover trigger={"hover"} placement={"bottom-start"}> */}
           {/* <PopoverTrigger> */}
-          <Link
+          <NavLink
             p={2}
-            href={navItem.href ?? "#"}
-            fontSize={"sm"}
+            to={navItem.href ?? "/"}
+            fontSize={"md"}
             fontWeight={500}
             color={linkColor}
             _hover={{
@@ -172,7 +173,7 @@ const DesktopNav = () => {
             }}
           >
             {navItem.label}
-          </Link>
+          </NavLink>
           {/* </PopoverTrigger> */}
 
           {/* {navItem.children && (
@@ -312,10 +313,10 @@ const NAV_ITEMS = [
   },
   {
     label: "Volunteer Opportunities",
-    href: "#",
+    href : "/volunteers"
   },
   {
-    label: "Organizations",
-    href: "#",
+    label: "Programs",
+    href: "/programs",
   },
 ];
