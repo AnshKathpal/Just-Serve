@@ -25,6 +25,7 @@ import {
 import logo from "../Images/JustServe.png";
 import { FiGlobe } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import Login from "../pages/Login";
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -131,7 +132,7 @@ export default function WithSubnavigation() {
 
           <HStack>
             <Button bg="white" color="grey" height="40px" fontSize="20px">
-              Log In
+              <Login/>
             </Button>
             <Text>|</Text>
             <Button bg="white" color="grey" leftIcon={<FiGlobe />}>
