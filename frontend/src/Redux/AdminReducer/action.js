@@ -5,7 +5,9 @@ import {
   POST_VOLUNTEER_SUCCESS,
   VOLUNTEER_ERROR,
   VOLUNTEER_REQUEST,
+  DELETE_VOLUNTEER_SUCCESS
 } from "./actionTypes";
+
 
 export const postVolunteers = (newVolunteer) => (dispatch) => {
   dispatch({ type: VOLUNTEER_REQUEST });
@@ -41,3 +43,19 @@ export const editVolunteers = (id,data) => (dispatch) => {
     dispatch({type : VOLUNTEER_ERROR})
   })
 }
+
+export const deleteVolunteerSuccess = (id) => ({
+  type: DELETE_VOLUNTEER_SUCCESS,
+  payload: id,
+});
+
+export const deleteVolunteer = (id) => async (dispatch) => {
+  dispatch({ type: VOLUNTEER_REQUEST });
+
+  try {
+    await axios.delete(`https://justserve.onrender.com/volunteer/delete/${id}`);
+    dispatch(deleteVolunteerSuccess(id));
+  } catch (error) {
+    dispatch({ type: VOLUNTEER_ERROR });
+  }
+};
