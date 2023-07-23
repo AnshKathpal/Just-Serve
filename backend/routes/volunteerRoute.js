@@ -1,9 +1,10 @@
 const express = require("express");
 const { VolunteerModel } = require("../models/volunteerModel");
+const { auth } = require("../middleware/authMiddleware");
 
 const volunteerRouter = express.Router();
 
-
+// volunteerRouter.use(auth);
 
 volunteerRouter.post("/add", async (req, res) => {
   const data = req.body;
@@ -17,7 +18,7 @@ volunteerRouter.post("/add", async (req, res) => {
 });
 
 // update
-volunteerRouter.patch("/update/:id", async (req, res) => {
+volunteerRouter.patch("/update/:id", auth, async (req, res) => {
   const { id } = req.params;
   // console.log("BODY", req.body);
   const posts = await VolunteerModel.findOne({ _id: id });
@@ -32,7 +33,7 @@ volunteerRouter.patch("/update/:id", async (req, res) => {
 });
 
 // delete
-volunteerRouter.delete("/delete/:id", async (req, res) => {
+volunteerRouter.delete("/delete/:id", auth, async (req, res) => {
   const { id } = req.params;
   console.log("BODY", req.body);
   const posts = await VolunteerModel.findOne({ _id: id });
@@ -109,6 +110,5 @@ volunteerRouter.get("/get", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
-
 
 module.exports = { volunteerRouter };
