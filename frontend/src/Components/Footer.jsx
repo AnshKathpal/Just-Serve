@@ -90,7 +90,7 @@ export default function LargeWithNewsletter() {
           </Stack>
           <Stack align={'flex-start'}>
             <ListHeader>Company</ListHeader>
-            <NavLink to={'/admin'}>Admin Login</NavLink>
+            <NavLink to={'/login'}>Admin Login</NavLink>
             <Link href={'#'}>About us</Link>
             <Link href={'#'}>Blog</Link>
             <Link href={'#'}>Contact us</Link>

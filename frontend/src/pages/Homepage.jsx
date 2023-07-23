@@ -36,15 +36,20 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import ImageSlider from "../Components/ImageSlider";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Homepage = () => {
+  const loggedIn = useSelector((store) => store.loginReducer.isAuth);
+  console.log(loggedIn);
+
   return (
     <div>
       <Navbar />
 
       {/* MainBox Video */}
 
-      <Box width="100%" height="85vh" mt="5%" >
+      <Box width="100%" height="85vh" mt="5%">
         <video
           opacity=".9"
           style={{
@@ -77,7 +82,7 @@ const Homepage = () => {
           //   opacity: "1",
           // }}
         >
-          <Text fontSize="3xl" color = "white" fontWeight="bold">
+          <Text fontSize="3xl" color="white" fontWeight="bold">
             Change requires action. Start here.
           </Text>
           <form
@@ -155,24 +160,36 @@ const Homepage = () => {
                   justifyContent: "space-evenly",
                 }}
               >
-                <button
-                  style={{
-                    color: "rgb(15,115,217)",
-                    height: "40px",
-                    fontSize: "20px",
-                  }}
-                >
-                  SignUp
-                </button>
-                <button
-                  style={{
-                    color: "rgb(15,115,217)",
-                    height: "40px",
-                    fontSize: "20px",
-                  }}
-                >
-                 < Login/>
-                </button>
+                {!loggedIn ? (
+                  <NavLink to={"/signup"}>
+                    <button
+                      style={{
+                        color: "rgb(15,115,217)",
+                        height: "40px",
+                        fontSize: "20px",
+                      }}
+                    >
+                      SignUp
+                    </button>
+                  </NavLink>
+                ) : (
+                  <></>
+                )}
+                {!loggedIn ? (
+                  <NavLink to={"/login"}>
+                    <button
+                      style={{
+                        color: "rgb(15,115,217)",
+                        height: "40px",
+                        fontSize: "20px",
+                      }}
+                    >
+                      Login
+                    </button>
+                  </NavLink>
+                ) : (
+                  <Heading p={2} fontSize={"xl"} color= "rgb(15,115,217)" >Hello Abhishek</Heading>
+                )}
               </div>
             </div>
           </form>
@@ -494,20 +511,27 @@ const Homepage = () => {
           padding="40px"
           borderRadius={"20px"}
           opacity="0.4"
-          _hover = {{
-            opacity : "1"
+          _hover={{
+            opacity: "1",
           }}
-          right = "10%"
-                  >
-          <Text fontSize="3xl" fontWeight="bold" >
-          About Us
+          right="10%"
+        >
+          <Text fontSize="3xl" fontWeight="bold">
+            About Us
           </Text>
           <Text fontSize="xl" textAlign="left">
-          We believe that together we can build a world where all people can lead free and dignified lives. Meet our team and see where we came from, what we do, and where we are going.
+            We believe that together we can build a world where all people can
+            lead free and dignified lives. Meet our team and see where we came
+            from, what we do, and where we are going.
           </Text>
-          <Button bg="rgb(15,115,217)" color="white" _hover={{
-            bg : "rgb(15,115,217)" , color : "white"
-          }} >
+          <Button
+            bg="rgb(15,115,217)"
+            color="white"
+            _hover={{
+              bg: "rgb(15,115,217)",
+              color: "white",
+            }}
+          >
             Load More
           </Button>
         </Flex>

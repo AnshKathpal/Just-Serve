@@ -18,6 +18,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   HamburgerIcon,
   CloseIcon,
@@ -27,13 +28,20 @@ import {
 import logo from "../Images/JustServe.png";
 import { FiGlobe } from "react-icons/fi";
 import { useEffect, useState } from "react";
-import Login from "../pages/Login";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
   const [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset);
   const [navbarTop, setNavbarTop] = useState(0);
+
+  const loggedIn = useSelector((store) => store.loginReducer.isAuth);
+  console.log(loggedIn);
+
+  
+
+  
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -136,8 +144,16 @@ export default function WithSubnavigation() {
           </button>
 
           <HStack>
-            <Login />
-
+            {/* <Login /> */}
+            {!loggedIn ? (
+              <NavLink to={"/login"}>
+                <Button bg="white" color="grey">
+                  Login
+                </Button>
+              </NavLink>
+            ) : (
+              <h1>Abhishek</h1>
+            )}
             <Text>|</Text>
             <Button bg="white" color="grey" leftIcon={<FiGlobe />}>
               En

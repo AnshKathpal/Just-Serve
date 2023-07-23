@@ -12,6 +12,7 @@ import Simple from "../pages/VolunteerSinglePage";
 
 import Volunteers from "../pages/Volunteers";
 import Programs from "../pages/Programs";
+import Login from "../pages/Login";
 export const MainRoutes = () => {
   return (
     <Routes>
@@ -21,8 +22,8 @@ export const MainRoutes = () => {
       <Route path="/volunteers" element={<Volunteers />} />
       <Route path="/volunteers/:id" element={<Simple />}></Route>
       <Route path="/programs" element={<Programs />}></Route>
-
       <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };
