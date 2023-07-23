@@ -4,6 +4,7 @@ import Footer from "../Components/Footer";
 import homevideo from "../Images/homevideo.mp4";
 import footerimg from "../Images/footerimg.jpeg";
 import painting from "../Images/painting.jpg";
+import Login from "./Login";
 
 import {
   Box,
@@ -170,7 +171,7 @@ const Homepage = () => {
                     fontSize: "20px",
                   }}
                 >
-                  Login
+                 < Login/>
                 </button>
               </div>
             </div>
