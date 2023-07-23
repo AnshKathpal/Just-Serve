@@ -64,7 +64,7 @@ const Homepage = () => {
         <Flex
           w="40%"
           position={"absolute"}
-          top={80}
+          top={"4%"}
           left={40}
           bg={"white"}
           borderRadius={"20px"}
