@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Text, Box } from "@chakra-ui/react";
+import { Text, Box, Button, Flex, useToast } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { editVolunteers } from "../../Redux/AdminReducer/action";
 
+
 export const EditSinglePage = () => {
+
+  const toast = useToast()
+
   const { id } = useParams();
   console.log("id", id);
   const editVolunteer = useSelector(
     (store) => store.adminReducer.volunteers.data
   );
   console.log(editVolunteer, "edit");
+  const navigate = useNavigate()
 
   const dispatch = useDispatch();
 
@@ -72,6 +77,7 @@ export const EditSinglePage = () => {
         address: address,
       };
       dispatch(editVolunteers(data._id, obj));
+      
     } else {
       console.log("error");
     }
@@ -80,27 +86,43 @@ export const EditSinglePage = () => {
   console.log(data, "Data");
 
   return (
-    <>
-      <Text fontSize="4xl">Edit Volunteer Opprtinuties</Text>
+    <div style={{padding : "20px"}} >
+      <Text fontSize="4xl" fontWeight={"bold"}>Edit Volunteer Opportunities</Text>
+
+      <Flex justifyContent="center" alignItems="center" >
+        <Box width="30%" >
+        <img style={{width : "100%"}} src={image} alt="" />
+        </Box>
+      
+      
 
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleEdit();
+          toast({
+            title: 'Organisation Edited',
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+            position: 'top',
+          })
+          navigate("/admin")
         }}
         style={{
-          border: "1px solid red",
           display: "grid",
           gridTemplateColumns: "repeat(3,1fr)",
           textAlign: "left",
           placeItems: "center",
-          width: "70%",
+          width: "60%",
           height: "700px",
           margin: "40px auto",
+          boxShadow:
+            "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em",
         }}
       >
         <div>
-          <label>Name of Organisation</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Name of Organisation</label>
           <br />
           <input
             value={name}
@@ -111,13 +133,14 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
           />
         </div>
 
         <div>
-          <label>Description</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Description</label>
           <br />
           <input
             name="description"
@@ -128,6 +151,7 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="text"
@@ -135,7 +159,7 @@ export const EditSinglePage = () => {
         </div>
 
         <div>
-          <label>Role</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Role</label>
           <br />
           <input
             value={role}
@@ -146,6 +170,7 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="text"
@@ -153,7 +178,7 @@ export const EditSinglePage = () => {
         </div>
 
         <div>
-          <label>Work Type</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Work Type</label>
           <br />
           <input
             value={typeofwork}
@@ -164,6 +189,7 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="text"
@@ -171,7 +197,7 @@ export const EditSinglePage = () => {
         </div>
 
         <div>
-          <label>Location</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Location</label>
           <br />
           <select
             value={location}
@@ -182,6 +208,7 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
           >
@@ -195,8 +222,8 @@ export const EditSinglePage = () => {
           </select>
         </div>
 
-        <div>
-          <label>Image</label>
+        {/* <div>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Image</label>
           <br />
           <input
             value={image}
@@ -207,14 +234,15 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="text"
           />
-        </div>
+        </div> */}
 
         <div>
-          <label>Posted on</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Posted on</label>
           <br />
           <input
             value={updated}
@@ -225,6 +253,7 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="text"
@@ -232,7 +261,7 @@ export const EditSinglePage = () => {
         </div>
 
         <div>
-          <label>Start Date</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Start Date</label>
           <br />
           <input
             value={start_date}
@@ -243,6 +272,7 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="datetime-local"
@@ -250,7 +280,7 @@ export const EditSinglePage = () => {
         </div>
 
         <div>
-          <label>End Data</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >End Data</label>
           <br />
           <input
             value={end_date}
@@ -260,6 +290,8 @@ export const EditSinglePage = () => {
               border: "1px solid black",
               width: "300px",
               borderRadius: "5px",
+              fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="datetime-local"
@@ -267,7 +299,7 @@ export const EditSinglePage = () => {
         </div>
 
         <div>
-          <label>Schedule</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Schedule</label>
           <br />
           <input
             value={schedule}
@@ -278,6 +310,7 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="text"
@@ -285,7 +318,7 @@ export const EditSinglePage = () => {
         </div>
 
         <div>
-          <label>Address</label>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }} >Address</label>
           <br />
           <textarea
             value={address}
@@ -296,14 +329,21 @@ export const EditSinglePage = () => {
               width: "300px",
               borderRadius: "5px",
               fontSize: "large",
+              backgroundColor: "#e3e6eb",
               padding: "5px",
             }}
             type="text"
           />
         </div>
 
-        <input type="submit" />
+        <Button type="submit" fontSize="large" bgColor={"rgb(15,115,227)"} color={"white"}>
+          Edit Organisations
+        </Button>
       </form>
-    </>
+      </Flex>
+
+
+
+    </div>
   );
 };

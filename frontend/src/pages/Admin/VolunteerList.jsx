@@ -10,7 +10,8 @@ import {
   Grid,
   SimpleGrid,
   VStack,
-  Tooltip
+  Tooltip,
+  useToast
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
@@ -31,6 +32,8 @@ import {
 } from "react-icons/fi";
 
 export const VolunteerList = () => {
+
+  const toast = useToast()
   const dispatch = useDispatch();
 
   const volunteerData = useSelector(
@@ -47,6 +50,13 @@ export const VolunteerList = () => {
       .then((res) => {
         console.log(res);
         dispatch(getVolunteer);
+        toast({
+          title: 'Organisation Deleted',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top',
+        })
       })
       .catch((err) => {
         console.log(err);

@@ -35,6 +35,9 @@ import {
   FiEdit2,
   FiUsers,
   FiUserPlus,
+  FiMail,
+  FiMessageSquare,
+  FiFile
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText, useState } from "react";
@@ -45,7 +48,7 @@ import { AddList } from "../../pages/Admin/AddList";
 import { createElement } from "react";
 import { OurVolunteer } from "../../pages/Admin/OurVolunteer";
 import { VolunteerList } from "../../pages/Admin/VolunteerList";
-import  AdminList  from "../../pages/Admin/AdminList";
+import AdminList from "../../pages/Admin/AdminList";
 import { AdminNew } from "../../pages/Admin/AdminNew";
 import { AdminDashboard } from "../../pages/Admin/AdminDashboard";
 import { useEffect } from "react";
@@ -117,12 +120,20 @@ export const AdminSidebar = () => {
   };
 
   return (
-    <div style={{position : "relative"}} >
-      <Flex bg="#eff2f5">
-        <Box bg="white" border="1px solid red" width="25%" height="100vh">
-          <Box width="45%" margin="auto">
+    <div style={{ position: "relative" }}>
+      <Flex>
+        <Box
+          bg="white"
+          width="25%"
+          height="100vh"
+          position="fixed"
+          boxShadow=" rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;"
+        >
+          <NavLink to={"/"} >
+          <Box width="55%" margin="auto">
             <img src={Logo} alt="" />
           </Box>
+          </NavLink>
           <VStack p="10">
             <Text color="gray.500" width="90%">
               Dashboard
@@ -196,15 +207,47 @@ export const AdminSidebar = () => {
                 Register Admins
               </Button>
             </VStack>
+
+            <Text color="gray.500" width="90%">
+              Connect
+              <hr />
+            </Text>
+
+            <VStack width="90%">
+              <Button
+                bg="white"
+                width="100%"
+                leftIcon={<FiMail />}
+              >
+                Mail
+              </Button>
+
+              <Button
+                bg="white"
+                width="100%"
+                leftIcon={<FiFile />}
+              >
+                Feedback
+              </Button>
+              <Button
+                bg="white"
+                width="100%"
+                leftIcon={<FiMessageSquare />}
+              >
+                Messages
+              </Button>
+            </VStack>
+
           </VStack>
         </Box>
 
         <Box
-          border="1px solid blue"
+          // border="1px solid blue"
           width="70%"
           position={"absolute"}
           top="10%"
           right="2.5%"
+          mt="90px"
         >
           {showDashboard && <AdminDashboard />}
           {showAddList && <AddList />}
@@ -216,14 +259,14 @@ export const AdminSidebar = () => {
 
         <Flex
           bg="white"
-          border="1px solid red"
           height="80px"
           pr="40px"
           alignItems="center"
           justifyContent="flex-end"
           width="75%"
-          position="fixed"
+          position="absolute"
           right="0%"
+          boxShadow="  rgba(0, 0, 0, 0.18) 0px 2px 1px;"
         >
           <img
             style={{
