@@ -12,9 +12,9 @@ import Signup from '../pages/SignUp'
 
 import Simple from "../pages/VolunteerSinglePage";
 
-import { EditSinglePage } from "../pages/Admin/EditSinglePage";
-import { AdminSidebar } from "../Components/AdminComponents/AdminSidebar";
-import Homepage from "../pages/Homepage";
+
+
+
 import Volunteers from "../pages/Volunteers"
 export const MainRoutes = () => {
   return (

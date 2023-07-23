@@ -11,6 +11,7 @@ import {
   IconButton,
   useColorModeValue,
 } from '@chakra-ui/react';
+import {NavLink} from "react-router-dom"
 import { ReactNode } from 'react';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { BiMailSend } from 'react-icons/bi';
@@ -89,7 +90,7 @@ export default function LargeWithNewsletter() {
           </Stack>
           <Stack align={'flex-start'}>
             <ListHeader>Company</ListHeader>
-            <Link href={'#'}>Admin Login</Link>
+            <NavLink to={'/admin'}>Admin Login</NavLink>
             <Link href={'#'}>About us</Link>
             <Link href={'#'}>Blog</Link>
             <Link href={'#'}>Contact us</Link>
