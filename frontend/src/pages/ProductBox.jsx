@@ -9,6 +9,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 
 const ProductBox = ({ ...product }) => {
   const {
@@ -54,7 +55,12 @@ const ProductBox = ({ ...product }) => {
           >
             VOLUNTEER OPPORTUNITY
           </Heading>
-          <Heading p={"3px"} textAlign={"left"} fontWeight="bold" fontSize="15px">
+          <Heading
+            p={"3px"}
+            textAlign={"left"}
+            fontWeight="bold"
+            fontSize="15px"
+          >
             {name}
           </Heading>
 
@@ -79,9 +85,11 @@ const ProductBox = ({ ...product }) => {
           </Text> */}
         </Box>
         <Box margin={"auto"}>
-          <Button colorScheme="blue" bgColor="rgb(15,115,217)" size="md">
-            Apply
-          </Button>
+          <NavLink to={"/volunteers/:id"}>
+            <Button colorScheme="blue" bgColor="rgb(15,115,217)" size="md">
+              Apply
+            </Button>
+          </NavLink>
         </Box>
       </Flex>
     </Box>

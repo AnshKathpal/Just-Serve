@@ -8,10 +8,19 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 const Programs = () => {
   return (
     <Box>
+      <Navbar />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       {/* 1st div */}
       <Box w={"80%"} m={"auto"}>
         <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} gap={"20px"}>
@@ -191,6 +200,8 @@ const Programs = () => {
           </Box>
         </SimpleGrid>
       </Box>
+      <br />
+      <Footer />
     </Box>
   );
 };

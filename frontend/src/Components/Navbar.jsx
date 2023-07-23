@@ -15,8 +15,9 @@ import {
   useBreakpointValue,
   useDisclosure,
   HStack,
+  Image,
 } from "@chakra-ui/react";
-import {NavLink} from "react-router-dom" 
+import { NavLink } from "react-router-dom";
 import {
   HamburgerIcon,
   CloseIcon,
@@ -27,6 +28,7 @@ import logo from "../Images/JustServe.png";
 import { FiGlobe } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import Login from "../pages/Login";
+
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -94,7 +96,9 @@ export default function WithSubnavigation() {
           alignItems={"center"}
           gap="40px"
         >
-          <img src={logo} alt="" style={{ width: "12%" }} />
+          <NavLink to={"/"}>
+            <Image src={logo} alt="" style={{ width: "53%" }} />
+          </NavLink>
 
           <Flex
             display={{ base: "none", md: "flex" }}
@@ -132,9 +136,8 @@ export default function WithSubnavigation() {
           </button>
 
           <HStack>
-            
-              <Login/>
-            
+            <Login />
+
             <Text>|</Text>
             <Button bg="white" color="grey" leftIcon={<FiGlobe />}>
               En
@@ -303,7 +306,6 @@ const MobileNavItem = ({ label, children, href }) => {
   );
 };
 
-
 const NAV_ITEMS = [
   {
     label: "Jobs",
@@ -313,7 +315,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Volunteer Opportunities",
-    href : "/volunteers"
+    href: "/volunteers",
   },
   {
     label: "Programs",
