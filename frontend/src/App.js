@@ -11,11 +11,7 @@ import Volunteers from "./pages/Volunteers";
 function App() {
   return (
     <div className="App">
-
-      {/* <MainRoutes /> */}
-      <h1>Check</h1>
-      {/* <Homepage/> */}
-      <Volunteers />
+        <MainRoutes />
     </div>
   );
 }
