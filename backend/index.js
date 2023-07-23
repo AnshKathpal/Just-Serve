@@ -5,6 +5,10 @@ const { volunteerRouter } = require("./routes/volunteerRoute");
 const { userRouter } = require("./routes/userRoute");
 const { adminRouter } = require("./routes/adminRoute");
 const app = express();
+const cors = require("cors");
+
+app.use(cors())
+
 app.use(express.json());
 
 app.use("/volunteer", volunteerRouter);
