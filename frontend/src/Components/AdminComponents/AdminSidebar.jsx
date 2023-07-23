@@ -45,27 +45,10 @@ import { AddList } from "../../pages/Admin/AddList";
 import { createElement } from "react";
 import { OurVolunteer } from "../../pages/Admin/OurVolunteer";
 import { VolunteerList } from "../../pages/Admin/VolunteerList";
-import { AdminList } from "../../pages/Admin/AdminList";
+import  AdminList  from "../../pages/Admin/AdminList";
 import { AdminNew } from "../../pages/Admin/AdminNew";
-
-// const dashboardRoutes = [
-//   { name: "Home", icon: FiHome, link: "/admindashboard" },
-//   { name: "Our Volunteers", icon: FiTrendingUp, link: "/ourvolunteers" },
-// ];
-
-// const menuRoutes = [
-//   { name: "VolunteerList", icon: FiList, link: "/volunteerlist" },
-//   {
-//     name: "Add Volunteer Opportunities",
-//     icon: FiEdit2,
-//     link: "/addvolunteers",
-//   },
-// ];
-
-// const adminRoutes = [
-//   { name: "Admins", icon: FiUsers, link: "/adminlist" },
-//   { name: "RegisterAdmin", icon: FiUserPlus, link: "/registeradmin" },
-// ];
+import { AdminDashboard } from "../../pages/Admin/AdminDashboard";
+import { useEffect } from "react";
 
 export const AdminSidebar = () => {
   const [showAddList, setShowAddList] = useState(true);
@@ -73,62 +56,86 @@ export const AdminSidebar = () => {
   const [showVolunteerList, setShowVolunteerList] = useState(true);
   const [showAdminList, setShowAdminList] = useState(true);
   const [showNewAdmin, setShowNewAdmin] = useState(true);
+  const [showDashboard, setShowDashboard] = useState(true);
+
+  useEffect(() => {
+    handleToggleDashboard();
+  }, []);
 
   const handleToggleAddList = () => {
     setShowAddList(true);
     setShowOurVolunteer(false);
-    setShowAdminList(false)
-    setShowNewAdmin(false)
+    setShowAdminList(false);
+    setShowNewAdmin(false);
     setShowVolunteerList(false);
+    setShowDashboard(false);
   };
 
   const handleToggleOurVolunteer = () => {
     setShowAddList(false);
     setShowVolunteerList(false);
-    setShowAdminList(false)
-    setShowNewAdmin(false)
+    setShowAdminList(false);
+    setShowNewAdmin(false);
     setShowOurVolunteer(true);
+    setShowDashboard(false);
   };
 
   const handleToggleVolunteerList = () => {
     setShowAddList(false);
     setShowOurVolunteer(false);
-    setShowAdminList(false)
-    setShowNewAdmin(false)
+    setShowAdminList(false);
+    setShowNewAdmin(false);
     setShowVolunteerList(true);
+    setShowDashboard(false);
   };
 
   const handleToggleAdminList = () => {
     setShowAddList(false);
     setShowOurVolunteer(false);
     setShowVolunteerList(false);
-    setShowNewAdmin(false)
-    setShowAdminList(true)
+    setShowNewAdmin(false);
+    setShowAdminList(true);
+    setShowDashboard(false);
   };
 
   const handleToggleNewAdmin = () => {
     setShowAddList(false);
     setShowOurVolunteer(false);
     setShowVolunteerList(false);
-    setShowAdminList(false)
-    setShowNewAdmin(true)
+    setShowAdminList(false);
+    setShowNewAdmin(true);
+    setShowDashboard(false);
+  };
+
+  const handleToggleDashboard = () => {
+    setShowAddList(false);
+    setShowOurVolunteer(false);
+    setShowVolunteerList(false);
+    setShowNewAdmin(false);
+    setShowAdminList(false);
+    setShowDashboard(true);
   };
 
   return (
-    <div >
+    <div style={{position : "relative"}} >
       <Flex bg="#eff2f5">
-        <Box bg="white"   border="1px solid red" width="25%" height="100vh">
-          <Box  width="45%" margin="auto">
+        <Box bg="white" border="1px solid red" width="25%" height="100vh">
+          <Box width="45%" margin="auto">
             <img src={Logo} alt="" />
           </Box>
-          <VStack  p="10">
+          <VStack p="10">
             <Text color="gray.500" width="90%">
               Dashboard
               <hr />
             </Text>
 
             <VStack width="90%">
-              <Button bg="white" width="100%" leftIcon={<FiHome />}>
+              <Button
+                onClick={handleToggleDashboard}
+                bg="white"
+                width="100%"
+                leftIcon={<FiHome />}
+              >
                 Home
               </Button>
 
@@ -147,7 +154,12 @@ export const AdminSidebar = () => {
               <hr />
             </Text>
             <VStack width="90%">
-              <Button onClick={handleToggleVolunteerList} bg="white" width="100%" leftIcon={<FiList />}>
+              <Button
+                onClick={handleToggleVolunteerList}
+                bg="white"
+                width="100%"
+                leftIcon={<FiList />}
+              >
                 Volunteer List
               </Button>
 
@@ -166,11 +178,21 @@ export const AdminSidebar = () => {
               <hr />
             </Text>
             <VStack width="90%">
-              <Button onClick = {handleToggleAdminList} bg="white" width="100%" leftIcon={<FiUsers />}>
+              <Button
+                onClick={handleToggleAdminList}
+                bg="white"
+                width="100%"
+                leftIcon={<FiUsers />}
+              >
                 Admins
               </Button>
 
-              <Button onClick={handleToggleNewAdmin} bg="white" width="100%" leftIcon={<FiUserPlus />}>
+              <Button
+                onClick={handleToggleNewAdmin}
+                bg="white"
+                width="100%"
+                leftIcon={<FiUserPlus />}
+              >
                 Register Admins
               </Button>
             </VStack>
@@ -184,7 +206,7 @@ export const AdminSidebar = () => {
           top="10%"
           right="2.5%"
         >
-          
+          {showDashboard && <AdminDashboard />}
           {showAddList && <AddList />}
           {showOurVolunteer && <OurVolunteer />}
           {showVolunteerList && <VolunteerList />}
@@ -192,14 +214,16 @@ export const AdminSidebar = () => {
           {showNewAdmin && <AdminNew />}
         </Box>
 
-        <Flex 
-        bg="white"
+        <Flex
+          bg="white"
           border="1px solid red"
           height="80px"
           pr="40px"
           alignItems="center"
           justifyContent="flex-end"
           width="75%"
+          position="fixed"
+          right="0%"
         >
           <img
             style={{
