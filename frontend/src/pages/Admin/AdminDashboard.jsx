@@ -1,5 +1,5 @@
 import { Box, SimpleGrid, Text, Flex } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ArcElement,Chart as ChartJS,
   CategoryScale,
   LinearScale,
@@ -197,23 +197,53 @@ export const AdminDashboard = () => {
   };
 
 
+  const [tableData, setTableData] = useState([]);
+  useEffect(() => {
+    const storedTableData = JSON.parse(localStorage.getItem("AppliedData"));
+    if (Array.isArray(storedTableData)) {
+      setTableData(storedTableData);
+    }
+  }, []);
+
+  console.log(tableData,"dataaa")
+
+  let appliedCounts = {};
+  if (tableData && Array.isArray(tableData)) {
+    appliedCounts = {};
+    for (const item of tableData) {
+      const applied = item.city;
+      if (appliedCounts[applied]) {
+        appliedCounts[applied]++;
+      } else {
+        appliedCounts[applied] = 1;
+      }
+    }
+    console.log(appliedCounts, "applied count");
+  }
+
+
   return (
     <>
       <Flex justifyContent="space-evenly">
         {donChartLocation && (
           <Box border="1px solid red" width="30%">
             <Doughnut data={donChartLocation} />
+            <Text fontWeight="bold" mt="10px" >Our Organisations Data</Text>
           </Box>
         )}
 
         {donChartWorkType && (
           <Box border="1px solid red" width="30%">
             <Doughnut data={donChartWorkType} />
+            <Text fontWeight="bold" mt="10px" >Our Work Type Data</Text>
           </Box>
         )}
       </Flex>
 
-<Box height="auto" backgroundColor="white" width="90%" border="1px solid red" m="40px auto 0px ">
+<Box p="20px" height="auto" boxShadow=" rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;" backgroundColor="white" width="90%" m="40px auto 0px ">
+  <Text fontSize="xl" fontWeight="bold" textAlign="center">
+    Volunteers Data By Month
+  </Text>
 <Line options={options} data={dataLine} />
 </Box>
       

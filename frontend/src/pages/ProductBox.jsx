@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 
 const ProductBox = ({ ...product }) => {
   const {
+    _id,
     image,
     name,
     role,
@@ -85,7 +86,7 @@ const ProductBox = ({ ...product }) => {
           </Text> */}
         </Box>
         <Box margin={"auto"}>
-          <NavLink to={"/volunteers/:id"}>
+          <NavLink to={`/volunteers/${_id}`}>
             <Button colorScheme="blue" bgColor="rgb(15,115,217)" size="md">
               Apply
             </Button>

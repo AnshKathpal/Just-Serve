@@ -21,6 +21,9 @@ import {
   MenuItem,
   MenuList,
   Button,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -268,16 +271,26 @@ export const AdminSidebar = () => {
           right="0%"
           boxShadow="  rgba(0, 0, 0, 0.18) 0px 2px 1px;"
         >
-          <img
+          
+          <Menu>
+  <MenuButton as={Button} colorScheme='white'>
+  <img as = {Button}
             style={{
-              border: "1px solid blue",
               borderRadius: "50%",
               width: "50px",
               height: "50px",
             }}
-            src=""
+            src="https://ca.slack-edge.com/T05D44GA3A5-U05D2LPUJCA-1215b48841ed-512"
             alt=""
           />
+  </MenuButton>
+  <MenuList>
+    <MenuGroup title='Profile'>
+      <MenuItem>Admins</MenuItem>
+      <MenuItem>Logout </MenuItem>
+    </MenuGroup>
+  </MenuList>
+</Menu>
         </Flex>
       </Flex>
     </div>
