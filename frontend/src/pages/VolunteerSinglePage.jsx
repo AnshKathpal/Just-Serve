@@ -43,6 +43,7 @@ import {
   AiOutlineEllipsis,
   FaMapMarkerAlt,
 } from "react-icons/ai";
+import { useToast } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
 import { useParams } from "react-router-dom";
@@ -55,12 +56,17 @@ export default function Simple() {
   const [contact, setContact] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [applied, setApplied] = useState([]);
+  const [applied, setApplied] = useState(
+    JSON.parse(localStorage.getItem("AppliedData")) || []
+  );
   const [sdata, setSdata] = useState({});
 
   const { id } = useParams();
+  const toast = useToast();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // let newData = [];
     const data = {
       firstname,
       lastname,
@@ -69,9 +75,25 @@ export default function Simple() {
       city,
       country,
     };
-    setApplied((prev) => [...prev, data]);
-    console.log(applied);
-    localStorage.setItem("AppliedData", JSON.stringify(applied));
+    // newData.push(data);
+    const updatedApplied = [...applied, data];
+    setApplied(updatedApplied);
+    console.log(updatedApplied);
+    localStorage.setItem("AppliedData", JSON.stringify(updatedApplied));
+    toast({
+      title: "Applied Sucessfully.....!",
+      description: "Thank You for applying",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
+    setCity("")
+    setContact("")
+    setSname("")
+    setFname("")
+    setCountry("")
+    setEmail("")
   };
   const singleData = async () => {
     let singledata = await axios.get(
@@ -89,6 +111,9 @@ export default function Simple() {
   return (
     <>
       <Navbar />
+      <br />
+      <br />
+      <br />
       <br />
       <br />
       <Flex maxW={"7xl"} padding={"40px"} position={"relative"}>
@@ -309,28 +334,35 @@ export default function Simple() {
 
             <Flex justifyContent={"space-around"}>
               <Box>
-                <Text>Start Date:{sdata.start_date} </Text>
+                <Text>
+                  <b>Start Date :</b>&nbsp;{sdata.start_date}{" "}
+                </Text>
               </Box>
               <Box>
-                <Text>End Date :{sdata.end_date}</Text>
+                <Text>
+                  <b>End Date :</b>&nbsp;{sdata.end_date}
+                </Text>
               </Box>
             </Flex>
             <Flex justifyContent={"space-around"}>
               <Box>
-                <Text>Schedule :{sdata.schedule} </Text>
+                <Text>
+                  <b>Schedule :</b>&nbsp;{sdata.schedule}{" "}
+                </Text>
               </Box>
               <Box>
-                <Text>Time commitment : Few hours week</Text>
+                <Text><b>Time commitment :</b> Few hours week</Text>
               </Box>
             </Flex>
             <Box>
               <Heading size={"md"} textAlign={"left"} fontSize={25}>
-                location
+                Location
               </Heading>
+              <br />
               <hr />
-              <Heading size={"extra-small"} textAlign={"left"} fontSize={15}>
+              <Text size={"extra-small"} textAlign={"left"} fontSize={15}>
                 &nbsp;{sdata.address}
-              </Heading>
+              </Text>
             </Box>
             <Box>
               <Text
@@ -401,6 +433,7 @@ export default function Simple() {
                       placeholder="Enter your Country"
                     />
                   </FormControl>
+                  <br />
                   <Box
                     bg={"gray.200"}
                     textAlign={"left"}
@@ -419,7 +452,7 @@ export default function Simple() {
                     mt={8}
                     size={"lg"}
                     py={"7"}
-                    bg={useColorModeValue("blue.900", "gray.50")}
+                    bg={useColorModeValue("blue.600")}
                     color={useColorModeValue("white", "blue.900")}
                     textTransform={"uppercase"}
                     _hover={{
