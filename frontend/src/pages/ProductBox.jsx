@@ -81,9 +81,7 @@ const ProductBox = ({ ...product }) => {
             Posted {updated}
           </Text>
 
-          {/* <Text fontSize={"xs"} textAlign={"left"} noOfLines={1}>
-            {description}
-          </Text> */}
+        
         </Box>
         <Box margin={"auto"}>
           <NavLink to={`/volunteers/${_id}`}>
