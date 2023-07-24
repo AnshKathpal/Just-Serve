@@ -31,6 +31,19 @@ volunteerRouter.patch("/update/:id", auth, async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+//single data
+// volunteerRouter.get("/:id", async (req, res) => {
+//   const { id } = req.params;
+//   // console.log("BODY", req.body);
+
+//   try {
+//     const posts = await VolunteerModel.findOne({ _id: id });
+
+//     res.status(200).json({ data: posts });
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// });
 
 // delete
 volunteerRouter.delete("/delete/:id", auth, async (req, res) => {
@@ -47,6 +60,7 @@ volunteerRouter.delete("/delete/:id", auth, async (req, res) => {
 });
 
 // get
+
 volunteerRouter.get("/get", async (req, res) => {
   let { location, type, page, limit, search } = req.query;
 
@@ -110,5 +124,18 @@ volunteerRouter.get("/get", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+volunteerRouter.get("/:itemId", async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
+    const item = await VolunteerModel.findById(itemId);
 
+    if (!item) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    res.json(item);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
 module.exports = { volunteerRouter };
