@@ -213,11 +213,12 @@ const SignUp = () => {
 
   return (
     <Box
-      bg="#f9efef"
+      // bg="#f9efef"
       minHeight="100vh"
       display="flex"
       justifyContent="center"
       alignItems="center"
+      bgImage="url(https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"
     >
       <Box
         w={{ base: "300px", md: "400px", lg: "600px" }}
@@ -227,6 +228,10 @@ const SignUp = () => {
         bg="white"
         boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
         textAlign="center"
+        background={"rgba(0, 0, 0, .2)"}
+        _hover={{
+          bg: "white",
+        }}
       >
         <Heading fontWeight={500}>Signup</Heading>
         <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={5} mt={10}>

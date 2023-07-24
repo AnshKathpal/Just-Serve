@@ -77,7 +77,6 @@ const Login = () => {
     setPassword("");
   };
 
-
   return (
     <Box
       bg="#f9efef"
@@ -86,6 +85,8 @@ const Login = () => {
       justifyContent="center"
       alignItems="center"
       py={10}
+      objectFit={"cover"}
+      bgImage="url(https://images.pexels.com/photos/1739842/pexels-photo-1739842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"
     >
       <Box
         w={{ base: "300px", md: "400px", lg: "600px" }}
@@ -93,7 +94,13 @@ const Login = () => {
         p={50}
         rounded={10}
         bg="white"
+        color={"white"}
         boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
+        background={"rgba(0, 0, 0, .2)"}
+        _hover={{
+          bg: "white",
+          color: "black",
+        }}
       >
         <Heading fontWeight={500} textAlign={"center"}>
           Login
