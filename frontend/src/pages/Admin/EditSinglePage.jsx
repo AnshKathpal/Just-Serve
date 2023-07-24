@@ -222,7 +222,7 @@ export const EditSinglePage = () => {
           </select>
         </div>
 
-        {/* <div>
+        <div>
           <label style={{ fontSize: "16px", fontWeight: "bold" }} >Image</label>
           <br />
           <input
@@ -239,7 +239,7 @@ export const EditSinglePage = () => {
             }}
             type="text"
           />
-        </div> */}
+        </div>
 
         <div>
           <label style={{ fontSize: "16px", fontWeight: "bold" }} >Posted on</label>

@@ -221,21 +221,60 @@ export const AdminDashboard = () => {
     console.log(appliedCounts, "applied count");
   }
 
+  const donChartApplied = {
+    labels: ["Pune", "Delhi", "Mumbai", "Noida", "Banglore"],
+    datasets: [
+      {
+        label: "# of Applied",
+        data: [
+          appliedCounts["Pune"] || 0,
+          appliedCounts["Delhi"] || 0,
+          appliedCounts["Mumbai"] || 0,
+          appliedCounts["Noida"] || 0,
+          appliedCounts["Bangalore"] || 0,
+        ],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
 
   return (
     <>
       <Flex justifyContent="space-evenly">
         {donChartLocation && (
-          <Box border="1px solid red" width="30%">
+          <Box width="30%">
             <Doughnut data={donChartLocation} />
             <Text fontWeight="bold" mt="10px" >Our Organisations Data</Text>
           </Box>
         )}
 
         {donChartWorkType && (
-          <Box border="1px solid red" width="30%">
+          <Box width="30%">
             <Doughnut data={donChartWorkType} />
             <Text fontWeight="bold" mt="10px" >Our Work Type Data</Text>
+          </Box>
+        )}
+
+{donChartApplied && (
+          <Box width="30%">
+            <Doughnut data={donChartApplied} />
+            <Text fontWeight="bold" mt="10px" >Our Applied Data</Text>
           </Box>
         )}
       </Flex>
